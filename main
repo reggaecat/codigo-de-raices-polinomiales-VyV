@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace VerificacionValidacion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("*** Raices de un poliniomio de segundo grado***");
+            Console.WriteLine("Coeficiente 'a'");
+            double a, b, c;
+            a = verificarCoeficienteA();
+            Console.Clear();
+            Console.WriteLine("*** Raices de un poliniomio de segundo grado***");
+            Console.WriteLine("Coeficiente 'b'");
+            b = ingresar();
+            Console.Clear();
+            Console.WriteLine("*** Raices de un poliniomio de segundo grado***");
+            Console.WriteLine("Coeficiente 'c'");
+            c = ingresar();
+            Console.Clear();
+            double discriminate = calcularDiscriminate(a, b, c);
+            Console.WriteLine("*** Raices de un poliniomio de segundo grado***");
+            Console.WriteLine("a=" + a);
+            Console.WriteLine("b=" + b);
+            Console.WriteLine("c=" + c);
+            Console.WriteLine("Raíces:");
+            if (discriminate > 0)
+            {
+                double r1 = 0, r2 = 0;
+                calcularRaices(Math.Sqrt(discriminate), a, b, ref r1, ref r2);
+                Console.WriteLine("   x1=" + r1);
+                Console.WriteLine("   x2=" + r2);
+            }
+            else if (discriminate == 0)
+                Console.WriteLine("   x=0");
+            else
+                Console.WriteLine("   Imaginarias");
+            Console.ReadKey();
+        }
+        public static double calcularDiscriminate(double a, double b, double c)
+        {
+            return (b * b) - (4 * a * c);
+        }
+        public static void calcularRaices(double discriminate, double a, double b, ref double r1, ref double r2)
+        {
+            r1 = (((-1) * b) + discriminate) / (2 * a);
+            r2 = (((-1) * b) - discriminate) / (2 * a);
+        }
+
+        public static double verificarCoeficienteA()
+        {
+            double a;
+            do
+            {
+                a = ingresar();
+                if (a == 0)
+                    Console.WriteLine("El coeficiente 'a' no puede ser igual a '0'");
+            } while (a == 0);
+            return a;
+        }
+        public static double ingresar()
+        {
+            bool number = true;
+            double x = 0;
+            do
+            {
+                try
+                {
+                    Console.Write("Ingrese un valor:");
+                    x = double.Parse(Console.ReadLine());
+                    number = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Ingrese un valor numérico!");
+                    number = false;
+                }
+            } while (!number);
+            return x;
+        }
+
+    }
+}
