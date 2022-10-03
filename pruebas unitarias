@@ -1,0 +1,47 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace TestProject2
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestMethodingresarA()
+        {
+            double result = VerificacionValidacion.Program.verificarCoeficienteA();
+            
+            if (result<=0)
+            {
+                Assert.Fail();
+            }
+            
+        }
+        public void TestMethodingresar()
+        {
+            string variable="a";
+             ;
+            if (VerificacionValidacion.Program.ingresar().GetTypeCode()==variable.GetTypeCode())
+            {
+                Assert.Fail();
+            }
+        }
+
+        public void TestMethodDiscriminante()
+        {
+            if (VerificacionValidacion.Program.calcularDiscriminate(1, 2, 1) < 0)
+            {
+                Assert.Fail();
+            }
+        }
+        public void TestCalcularRaices()
+        {
+            double r1 = 0;
+            double r2 = 0;
+            VerificacionValidacion.Program.calcularRaices(12, 3, 4, ref r1, ref r2);
+            if(r1<0 || r2 < 0)
+            {
+                Assert.Fail();
+            }
+        }
+    }
+}
